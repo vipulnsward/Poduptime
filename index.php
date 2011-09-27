@@ -7,7 +7,7 @@
 <script type="text/javascript" src="jquery.tipsy.js"></script>
 <script type="text/javascript" src="podup.js"></script>
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
-<link rel="stylesheet" href="newstyle.css" />
+<link rel="stylesheet" href="/css/newstyle.css" />
 <script type="text/javascript">
 (function() {
 var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
@@ -72,7 +72,7 @@ s1.parentNode.insertBefore(s, s1);
       <br>
       <script src="http://www.stumbleupon.com/hostedbadge.php?s=1"></script>
       <br><br>Android App:<br>
-      <a href="https://market.android.com/details?id=appinventor.ai_david_morley.DiasporaPoduptime"><img src="android-dude128.png"></a>
+      <a href="https://market.android.com/details?id=appinventor.ai_david_morley.DiasporaPoduptime"><img src="/images/android-dude128.png"></a>
     </div>
     <div class="content">
       <div id="results">
