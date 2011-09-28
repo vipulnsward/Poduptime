@@ -7,7 +7,7 @@ $(document).ready(function(){
   $('#add').click(function() {
     $('#howto').show('slow'); $('#add').hide('slow');$('#content').hide('slow');
   });
-  $("#myTable").tablesorter( {sortList: [[2,1], [3,1], [4,1]]} );
+  $("#myTable").tablesorter( {sortList: [[3,1], [4,1]]} );
   $('#add').fadeIn(6800);
   $('#others').fadeIn(2000);
   $( ".utc-timestamp" ).each(function() {

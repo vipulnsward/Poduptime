@@ -1,11 +1,11 @@
 <html><head><title>Diaspora Pod uptime - Find your new social home</title>
 <meta name="keywords" content="diaspora, podupti.me, diasp, diasporg, diasp.org, facebook, open source social, open source facebook, open source social network" />
 <meta name="description" content="Diaspora Pod Live Status. diasp.org pod uptime monitor for Diaspora pods" />
-<script type="text/javascript" src="jquery-1.6.4.min.js"></script> 
-<script type="text/javascript" src="jquery.tablesorter.min.js"></script> 
-<script type="text/javascript" src="jquery.loading.1.6.4.min.js"></script> 
-<script type="text/javascript" src="jquery.tipsy.js"></script>
-<script type="text/javascript" src="podup.js"></script>
+<script type="text/javascript" src="/js/jquery-1.6.4.min.js"></script> 
+<script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script> 
+<script type="text/javascript" src="/js/jquery.loading.1.6.4.min.js"></script> 
+<script type="text/javascript" src="/js/jquery.tipsy.js"></script>
+<script type="text/javascript" src="/js/podup.js"></script>
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
 <link rel="stylesheet" href="/css/newstyle.css" />
 <script type="text/javascript">
