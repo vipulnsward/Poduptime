@@ -93,6 +93,7 @@ s1.parentNode.insertBefore(s, s1);
         <br> So URL should look very close to this: http://stats.pingdom.com/b4gasnh1c176/240588<br>
         <br><form action="add.php" method="post">
         Stats URL:<input type="text" name="url" size="100"><br>
+        Pod domainname:<input type="text" name="domain" size="100"><br>
         Your Email:<input type="text" name="email" size="50"><br>
         <input type="submit" value="submit">
         </form>

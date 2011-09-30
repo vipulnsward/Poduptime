@@ -5,7 +5,7 @@
          die("Error in connection: " . pg_last_error());
      }
     
-     $pingdomurl = pg_escape_string($_POST['pingdomurl']);
+     $pingdomurl = pg_escape_string($_POST['url']);
      $domain = pg_escape_string($_POST['domain']);
      $email = pg_escape_string($_POST['email']);
     
