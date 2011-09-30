@@ -10,8 +10,9 @@
      die("Error in SQL query: " . pg_last_error());
  }   
  while ($row = pg_fetch_array($result)) {
-     echo "pod" . $row[1] . "<br />";
-     echo "pingdom: " . $row[2] . "<p />";
+     echo "pod" . $row["domain"] . "<br />";
+     echo "pingdom: " . $row["pindomurl"] . "<p />";
+     echo "gitdate: " . $row["hgitdate"] . "<p />";
  }   
 
 
