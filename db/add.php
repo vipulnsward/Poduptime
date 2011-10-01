@@ -42,7 +42,7 @@ echo "pingdom report already exists";die;
          die("Error in SQL query: " . pg_last_error());
      }
     
-     echo "Data successfully inserted!";
+     echo "Data successfully inserted! Your pod will be reviewed and live on the list soon!";
     
      pg_free_result($result);
     

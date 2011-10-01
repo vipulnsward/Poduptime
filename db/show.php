@@ -19,16 +19,16 @@ od last updated from the main Diaspora code.">?</a></th>
  if (!$dbh) {
      die("Error in connection: " . pg_last_error());
  }  
- $sql = "SELECT * FROM pods WHERE hidden <> 'no'";
+ $sql = "SELECT * FROM pods";// WHERE hidden <> 'no'";
  $result = pg_query($dbh, $sql);
  if (!$result) {
      die("Error in SQL query: " . pg_last_error());
  }   
  while ($row = pg_fetch_array($result)) {
-
-     echo "<tr><td>" . $row["domain"] . "</td>";
+if ($row["secure"] == "true") {$method = "https://";} else {$method = "http://";} 
+     echo "<tr><td>" . $method . $row["domain"] . "</td>";
      echo "<td>" . $row["status"] . "</td>";
-     echo "<td>" . $row["hgitdate"] . "</td>";
+     echo "<td gitrev='".$row["hgitref"]."'>" . $row["hgitdate"] . "</td>";
      echo "<td>" . $row["uptime"] . "</td>";
      echo "<td>" . $row["monthsmonitored"] . "</td>";
      echo "<td>" . $row["responsetimelast7"] . "</td>";
