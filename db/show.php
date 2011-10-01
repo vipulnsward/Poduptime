@@ -25,14 +25,15 @@ od last updated from the main Diaspora code.">?</a></th>
      die("Error in SQL query: " . pg_last_error());
  }   
  while ($row = pg_fetch_array($result)) {
-     echo "<td>" . $row["domain"] . "</td>";
+
+     echo "<tr><td>" . $row["domain"] . "</td>";
      echo "<td>" . $row["status"] . "</td>";
      echo "<td>" . $row["hgitdate"] . "</td>";
      echo "<td>" . $row["uptime"] . "</td>";
      echo "<td>" . $row["monthsmonitored"] . "</td>";
      echo "<td>" . $row["responsetimelast7"] . "</td>";
-     echo "<td>" . $row["ipv6"] . "</td>";
- }   
+     echo "<td>" . $row["ipv6"] . "</td></tr>";
+ }
  pg_free_result($result);       
  pg_close($dbh);
 ?>
