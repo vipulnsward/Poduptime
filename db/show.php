@@ -19,20 +19,20 @@ od last updated from the main Diaspora code.">?</a></th>
  if (!$dbh) {
      die("Error in connection: " . pg_last_error());
  }  
- $sql = "SELECT * FROM pods";// WHERE hidden <> 'no'";
+ $sql = "SELECT * FROM pods WHERE hidden <> 'yes'";
  $result = pg_query($dbh, $sql);
  if (!$result) {
      die("Error in SQL query: " . pg_last_error());
  }   
  while ($row = pg_fetch_array($result)) {
 if ($row["secure"] == "true") {$method = "https://";} else {$method = "http://";} 
-     echo "<tr><td>" . $method . $row["domain"] . "</td>";
+     echo "<tr><td class='tipsy' title='SSL Cert ".$row["sslvalid"]."'>" . $method . $row["domain"] . "</td>";
      echo "<td>" . $row["status"] . "</td>";
-     echo "<td gitrev='".$row["hgitref"]."'>" . $row["hgitdate"] . "</td>";
-     echo "<td>" . $row["uptime"] . "</td>";
-     echo "<td>" . $row["monthsmonitored"] . "</td>";
+     echo "<td class='tipsy' title='Git Revision ".$row["hgitref"]."'>" . $row["hgitdate"] . "</td>";
+     echo "<td>" . $row["uptimelast7"] . "</td>";
+     echo "<td class='tipsy' title='Last Check ".$row["dateupdated"]." '>" . $row["monthsmonitored"] . "</td>";
      echo "<td>" . $row["responsetimelast7"] . "</td>";
-     echo "<td>" . $row["ipv6"] . "</td></tr>";
+     echo "<td class='tipsy' title='IP Address ".$row["ip"]." '>" . $row["ipv6"] . "</td></tr>";
  }
  pg_free_result($result);       
  pg_close($dbh);

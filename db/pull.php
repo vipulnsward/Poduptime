@@ -63,12 +63,11 @@ $ipv6="no";
 } else {
 $ipv6="yes";
 }
-echo $ipv6;
-
 
 //curl the pingdom page 
         $ping = curl_init();
-        curl_setopt($ping, CURLOPT_URL, $row[1]);
+        $thismonth = "/".date("Y")."/".date("m");
+        curl_setopt($ping, CURLOPT_URL, $row[1].$thismonth);
         curl_setopt($ping, CURLOPT_POST, 0);
         curl_setopt($ping, CURLOPT_HEADER, 1);
         curl_setopt($ping, CURLOPT_RETURNTRANSFER, 1);
@@ -79,10 +78,44 @@ echo $ipv6;
         curl_close($ping);
         //echo $pingdom;
 
-//use existing code here but loose multi curl so a pod can be updated by itself 
-//$gitdate = date('Y-m-d H:i:s');
-//echo $gitdate;
-     $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6' WHERE domain='$row[0]'";
+//response time
+preg_match_all('/<h3>Avg. resp. time this month<\/h3>
+<p class="large">(.*?)</',$pingdom,$matcheach);
+$responsetime = $matcheach[1][0];
+
+//months monitored
+preg_match_all('/<option value=(.*?)</i',$pingdom,$matchdates);
+$months = count($matchdates[0]);
+
+//uptime %
+preg_match_all('/<h3>Uptime this month<\/h3>
+<p class="large">(.*?)</',$pingdom,$matchper);
+$uptime = preg_replace("/,/", ".", $matchper[1][0]);
+echo $uptime;
+//last check
+preg_match_all('/<h3>Last checked<\/h3>
+<p>(.*?)</',$pingdom,$matchdate);
+$pingdom_timestamp = $matchdate[1][0];
+if ($pingdom_timestamp) {
+echo $pingdom_timestamp;$pingdomdate = $pingdom_timestamp;
+}
+else {
+$splitdate = explode(" ",$matchdate[1][0]);
+$newtimestamp = $splitdate[0];
+#$dateTime = DateTime::createFromFormat('d/m/Y H:i:s', $matchdate[1][0]);
+#$newunpin = strtotime($dateTime->format('Y-m-d h:i:s a'));
+echo $splitdate[0];$pingdomdate = $splitdate[0];
+}
+//status
+if (strpos($pingdom,"class=\"up\"")) { $live="up"; }
+elseif (strpos($pingdom,"class=\"down\"")) { $live="down"; }
+elseif (strpos($pingdom,"class=\"paused\"")) { $live="paused";}
+else {$live="error";}
+
+
+//sql it
+     $timenow = date('Y-m-d H:i:s');
+     $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6', monthsmonitored='$months', uptimelast7='$uptime', status='$live', dateLaststats='$pingdomdate', dateUpdated='$timenow', responsetimelast7='$responsetime' WHERE domain='$row[0]'";
      $result = pg_query($dbh, $sql);
      if (!$result) {
          die("Error in SQL query: " . pg_last_error());
