@@ -1,3 +1,4 @@
+<!-- /* Copyright (c) 2011, David Morley. This file is licensed under the Affero General Public License version 3 or later. See the COPYRIGHT file. */ -->
 <table id="myTable" class="tablesorter" width="75%">
 <thead>
 <tr>

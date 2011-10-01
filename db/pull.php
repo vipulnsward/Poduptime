@@ -1,3 +1,4 @@
+<!-- /* Copyright (c) 2011, David Morley. This file is licensed under the Affero General Public License version 3 or later. See the COPYRIGHT file. */ -->
 <?php
  include('config.php');
  $dbh = pg_connect("dbname=$pgdb user=$pguser password=$pgpass");
