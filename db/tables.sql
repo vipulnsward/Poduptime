@@ -2,7 +2,7 @@ CREATE TABLE pods (
  id serial8 UNIQUE PRIMARY KEY,
  domain text UNIQUE NOT NULL,
  whois text,
- hidden text DEFAULT 'no',
+ hidden text DEFAULT 'yes',
  ip cidr,
  ptr text,
  email text,

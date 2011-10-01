@@ -19,7 +19,7 @@ od last updated from the main Diaspora code.">?</a></th>
  if (!$dbh) {
      die("Error in connection: " . pg_last_error());
  }  
- $sql = "SELECT * FROM pods";
+ $sql = "SELECT * FROM pods WHERE hidden <> 'no'";
  $result = pg_query($dbh, $sql);
  if (!$result) {
      die("Error in SQL query: " . pg_last_error());
