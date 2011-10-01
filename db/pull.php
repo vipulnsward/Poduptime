@@ -5,7 +5,7 @@
          die("Error in connection: " . pg_last_error());
      }
 //foreach pod check it and update db    
- $sql = "SELECT domain,pindomurl FROM pods";
+ $sql = "SELECT domain,pingdomurl FROM pods";
  $result = pg_query($dbh, $sql);
  if (!$result) {
      die("Error in SQL query: " . pg_last_error());
