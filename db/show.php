@@ -13,7 +13,6 @@ od last updated from the main Diaspora code.">?</a></th>
 </tr>
 </thead>
 <tbody>
-
 <?php
  include('config.php');
  $dbh = pg_connect("dbname=$pgdb user=$pguser password=$pgpass");
@@ -26,14 +25,14 @@ od last updated from the main Diaspora code.">?</a></th>
      die("Error in SQL query: " . pg_last_error());
  }   
  while ($row = pg_fetch_array($result)) {
-if ($row["secure"] == "true") {$method = "https://";} else {$method = "http://";} 
-     echo "<tr><td class='tipsy' title='SSL Cert ".$row["sslvalid"]."'>" . $method . $row["domain"] . "</td>";
+if ($row["secure"] == "true") {$method = "https://";$class="green";} else {$method = "http://";$class="red";} 
+     echo "<tr><td class='tipsy' title='SSL Cert ".$row["sslvalid"]."'><a class='$class' target='new' href='". $method . $row["domain"] ."'>" . $method . $row["domain"] . "</a></td>";
      echo "<td>" . $row["status"] . "</td>";
      echo "<td class='tipsy' title='Git Revision ".$row["hgitref"]."'>" . $row["hgitdate"] . "</td>";
      echo "<td>" . $row["uptimelast7"] . "</td>";
-     echo "<td class='tipsy' title='Last Check ".$row["dateupdated"]." '>" . $row["monthsmonitored"] . "</td>";
+     echo "<td class='tipsy' title='Last Check ".$row["dateupdated"]." '><a target='new' href='".$row["pingdomurl"]."'>" . $row["monthsmonitored"] . "</a></td>";
      echo "<td>" . $row["responsetimelast7"] . "</td>";
-     echo "<td class='tipsy' title='IP Address ".$row["ip"]." '>" . $row["ipv6"] . "</td></tr>";
+     echo "<td class='tipsy' title='IP Address ".$row["ip"]." '>" . $row["ipv6"] . "</td></tr>\n";
  }
  pg_free_result($result);       
  pg_close($dbh);
