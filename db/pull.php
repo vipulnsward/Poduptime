@@ -89,6 +89,12 @@ $hidden = "no";
 } else {
 $hidden = "yes";
 }
+// lets cap the scores or you can go too high or too low to never be effected by them
+if ($score > 20) {
+$score = 20;
+} elseif ($score < -20) {
+$score = -20;
+}
 
 $ip6 = escapeshellcmd('dig +nocmd '.$domain.' aaaa +noall +short');
 $ip = escapeshellcmd('dig +nocmd '.$domain.' a +noall +short');
