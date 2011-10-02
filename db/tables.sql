@@ -1,6 +1,9 @@
 CREATE TABLE pods (
  id serial8 UNIQUE PRIMARY KEY,
  domain text UNIQUE NOT NULL,
+ score int DEFAULT 10,
+ adminrating int DEFAULT 10,
+ userrating int DEFAULT 10,
  whois text,
  hidden text DEFAULT 'yes',
  ip cidr,
