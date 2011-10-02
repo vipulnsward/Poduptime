@@ -26,3 +26,11 @@ CREATE TABLE pods (
  dateLaststats timestamp DEFAULT current_timestamp,
  dateCreated timestamp DEFAULT current_timestamp
 );
+CREATE TABLE rating_comments (
+ id serial8 UNIQUE PRIMARY KEY,
+ domain text NOT NULL,
+ comment text,
+ admin text, 
+ pod_id int,
+ rating int
+);
