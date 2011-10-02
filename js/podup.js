@@ -3,6 +3,7 @@ function get_date(timestamp) {
   return [date.getMonth()+1,date.getDate(), date.getFullYear()].join('/');
 }
 $(document).ready(function(){
+  $('a[rel*=facebox]').facebox()
   $('.tipsy').tipsy();
   $('#add').click(function() {
     $('#howto').show('slow'); $('#add').hide('slow');$('#results').hide('slow');
