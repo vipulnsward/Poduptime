@@ -7,8 +7,8 @@
          die("Error in connection: " . pg_last_error());
      }
 //foreach pod check it and update db    
- if ($_GET['domain']) {$domain=$_GET['domain'];$sql = "SELECT domain,pingdomurl FROM pods WHERE domain = '$domain'";} 
- else {$sql = "SELECT domain,pingdomurl FROM pods";}
+ if ($_GET['domain']) {$domain=$_GET['domain'];$sql = "SELECT domain,pingdomurl FROM pods WHERE domain = '$domain'";$sleep="0";} 
+ else {$sql = "SELECT domain,pingdomurl FROM pods";$sleep="18";}
 
  $result = pg_query($dbh, $sql);
  if (!$result) {
@@ -160,7 +160,7 @@ else {$live="error";}
 
 
 //end foreach
-sleep(20);
+sleep($sleep);
  }
  }   
      pg_free_result($result);
