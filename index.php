@@ -5,6 +5,7 @@
 <script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script> 
 <script type="text/javascript" src="/js/jquery.loading.1.6.4.min.js"></script> 
 <script type="text/javascript" src="/js/jquery.tipsy.js"></script>
+<script type="text/javascript" src="/vendor/facebox/src/facebox.js"></script>
 <script type="text/javascript" src="/js/podup.js"></script>
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
 <link rel="stylesheet" href="/css/newstyle.css" />

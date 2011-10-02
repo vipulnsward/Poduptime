@@ -32,5 +32,7 @@ CREATE TABLE rating_comments (
  comment text,
  admin text, 
  pod_id int,
- rating int
+ rating int,
+ username text,
+ userurl text
 );

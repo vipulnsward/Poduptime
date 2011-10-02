@@ -3,6 +3,8 @@ function get_date(timestamp) {
   return [date.getMonth()+1,date.getDate(), date.getFullYear()].join('/');
 }
 $(document).ready(function(){
+$.facebox.settings.closeImage = '/vendor/facebox/src/closelabel.png'
+$.facebox.settings.loadingImage = '/vendor/facebox/src/loading.gif'
   $('a[rel*=facebox]').facebox()
   $('.tipsy').tipsy();
   $('#add').click(function() {
