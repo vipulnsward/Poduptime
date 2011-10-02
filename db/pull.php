@@ -72,7 +72,10 @@ $secure="false";$hidden="yes";
 //no diaspora cookie on either, lets set this one as hidden and notify someone its not really a pod
 //could also be a ssl pod with a bad cert, I think its ok to call that a dead pod now
 }
-
+if (!$gitdate) {
+//if a pod is not displaying the git header data its really really really old
+$hidden="yes";
+}
 
 
 $ip6 = escapeshellcmd('dig +nocmd '.$domain.' aaaa +noall +short');

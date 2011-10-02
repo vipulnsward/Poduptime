@@ -94,8 +94,9 @@ This site is a service of <a href="https://diasp.org">Diasp.org Pod</a><br>
       <div id="results">
         <?php include("/var/www/podup/db/show.php"); ?>
       </div>
-      <div id="add" style="display:none;">
+      <div id="add">
         Pod Host? <u style="cursor: pointer; cursor: hand;">Click here</u> to manage your listing.<br>
+        Our source is on <a href="https://github.com/diasporg/Poduptime">GitHub</a><br><br>
       </div>
       <div id="howto" style="display:none; margin-left:50px">
         <br>
@@ -105,9 +106,9 @@ This site is a service of <a href="https://diasp.org">Diasp.org Pod</a><br>
         Pingdom shows me http://stats.pingdom.com/b4gasnh1c176 when I click it to goes to http://stats.pingdom.com/b4gasnh1c176/240588
         <br> So URL should look very close to this: http://stats.pingdom.com/b4gasnh1c176/240588<br>
         <br><form action="db/add.php" method="post">
-        Stats URL:<input type="text" name="url" size="100"><br>
-        Pod domainname:<input type="text" name="domain" size="100"><br>
-        Your Email:<input type="text" name="email" size="50"><br>
+        Stats URL:<input type="text" name="url" class="xlarge span8" placeholder="http://stats.pingdom.com/b4gasnh1c176/240588"><br>
+        Pod domainname:<input type="text" name="domain" class="xlarge span4" placeholder="domain.com"><br>
+        Your Email:<input type="text" name="email" class="xlarge span4" placeholder="user@domain.com"><br>
         <input type="submit" value="submit">
         </form>
         <br>Is your pod missing? If the server can not get a diaspora session its on the hidden list <a href="http://podupti.me/?hidden=true">Show</a>. This
