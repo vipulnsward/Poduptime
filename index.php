@@ -8,7 +8,7 @@
 <script type="text/javascript" src="/js/podup.js"></script>
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
 <link rel="stylesheet" href="/css/newstyle.css" />
-<?php include("vendor/Mobile_Detect.php");$detect = new Mobile_Detect();if ($detect->isMobile()) {echo '<link rel="stylesheet" href="/css/mobile.css" />';} ?>
+<?php include("vendor/Mobile_Detect.php");$detect = new Mobile_Detect();if ($detect->isMobile()) {echo '<link rel="stylesheet" href="/css/mobile.css" /><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">';} ?>
 <script type="text/javascript">
 (function() {
 var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
@@ -78,7 +78,7 @@ This site is a service of <a href="https://diasp.org">Diasp.org Pod</a><br>
   </header>
   <div class="container-fluid">
     <div class="sidebar"> 
-      <script type="text/javascript">
+      <div class="adsense"><script type="text/javascript">
       <!-- 
       google_ad_client = "ca-pub-3662181805557062"; 
       /* podup2 */ 
@@ -87,7 +87,7 @@ This site is a service of <a href="https://diasp.org">Diasp.org Pod</a><br>
       google_ad_height = 200; 
       //--> 
       </script> 
-      <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+      <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script></div>
       <a href="https://market.android.com/details?id=appinventor.ai_david_morley.DiasporaPoduptime"><img src="/images/android-dude128.png"></a>
     </div>
 
