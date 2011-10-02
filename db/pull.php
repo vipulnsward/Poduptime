@@ -7,8 +7,8 @@
          die("Error in connection: " . pg_last_error());
      }
 //foreach pod check it and update db    
- if ($_GET['domain']) {$domain=$_GET['domain'];$sql = "SELECT domain,pingdomurl FROM pods WHERE domain = '$domain'";$sleep="0";} 
- else {$sql = "SELECT domain,pingdomurl FROM pods";$sleep="18";}
+ if ($_GET['domain']) {$domain=$_GET['domain'];$sql = "SELECT domain,pingdomurl,score FROM pods WHERE domain = '$domain'";$sleep="0";} 
+ else {$sql = "SELECT domain,pingdomurl,score FROM pods";$sleep="18";}
 
  $result = pg_query($dbh, $sql);
  if (!$result) {
@@ -18,6 +18,7 @@
  $numrows = pg_num_rows($result);
  for ($i = 0; $i < $numrows; $i++) {
      $domain =  $row[$i]['domain'];
+     $score = $row[$i]['score'];
      //curl the header of pod with and without https
 
         $chss = curl_init();
@@ -40,7 +41,9 @@
 
 if (stristr($outputssl, 'Set-Cookie: _diaspora_session=')) {
 //parse header data
-$secure="true";$hidden="no";
+$secure="true";
+//$hidden="no";
+$score = $score +1;
 preg_match('/X-Git-Update: (.*?)\n/',$outputssl,$xgitdate);
 $gitdate = trim($xgitdate[1]);
 //$gitdate = strtotime($gitdate);
@@ -54,7 +57,9 @@ preg_match('/Content-Encoding: (.*?)\n/',$outputssl,$xencoding);
 $encoding = trim($xencoding[1]);
 
 } elseif (stristr($output, 'Set-Cookie: _diaspora_session=')) {
-"not";$secure="false";$hidden="no";
+"not";$secure="false";
+//$hidden="no";
+$score = $score +1;
 //parse header data
 preg_match('/X-Git-Update: (.*?)\n/',$output,$xgitdate);
 $gitdate = trim($xgitdate[1]);
@@ -68,15 +73,22 @@ $server = trim($xserver[1]);
 preg_match('/Content-Encoding: (.*?)\n/',$output,$xencoding);
 $encoding = trim($xencoding[1]);
 } else {
-$secure="false";$hidden="yes";
+$secure="false";
+$score = $score - 1;
+//$hidden="yes";
 //no diaspora cookie on either, lets set this one as hidden and notify someone its not really a pod
 //could also be a ssl pod with a bad cert, I think its ok to call that a dead pod now
 }
 if (!$gitdate) {
-//if a pod is not displaying the git header data its really really really old
-$hidden="yes";
+//if a pod is not displaying the git header data its really really really old lets lower your score
+//$hidden="yes";
+$score = $score - 1;
 }
-
+if ($score > 5) {
+$hidden = "no";
+} else {
+$hidden = "yes";
+}
 
 $ip6 = escapeshellcmd('dig +nocmd '.$domain.' aaaa +noall +short');
 $ip = escapeshellcmd('dig +nocmd '.$domain.' a +noall +short');
@@ -150,7 +162,7 @@ else {$live="error";}
 
 //sql it
      $timenow = date('Y-m-d H:i:s');
-     $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6', monthsmonitored='$months', uptimelast7='$uptime', status='$live', dateLaststats='$pingdomdate', dateUpdated='$timenow', responsetimelast7='$responsetime' WHERE domain='$domain'";
+     $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6', monthsmonitored='$months', uptimelast7='$uptime', status='$live', dateLaststats='$pingdomdate', dateUpdated='$timenow', responsetimelast7='$responsetime', score='$score' WHERE domain='$domain'";
      $result = pg_query($dbh, $sql);
      if (!$result) {
          die("Error in SQL query: " . pg_last_error());
