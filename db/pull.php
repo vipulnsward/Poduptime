@@ -1,5 +1,6 @@
-<!-- /* Copyright (c) 2011, David Morley. This file is licensed under the Affero General Public License version 3 or later. See the COPYRIGHT file. */ -->
+#!/usr/bin/php
 <?php
+//* Copyright (c) 2011, David Morley. This file is licensed under the Affero General Public License version 3 or later. See the COPYRIGHT file. */
  include('config.php');
  $dbh = pg_connect("dbname=$pgdb user=$pguser password=$pgpass");
      if (!$dbh) {
@@ -42,6 +43,7 @@ if (stristr($outputssl, 'Set-Cookie: _diaspora_session=')) {
 $secure="true";$hidden="no";
 preg_match('/X-Git-Update: (.*?)\n/',$outputssl,$xgitdate);
 $gitdate = trim($xgitdate[1]);
+//$gitdate = strtotime($gitdate);
 preg_match('/X-Git-Revision: (.*?)\n/',$outputssl,$xgitrev);
 $gitrev = trim($xgitrev[1]);
 preg_match('/X-Runtime: (.*?)\n/',$outputssl,$xruntime);
@@ -56,6 +58,7 @@ $encoding = trim($xencoding[1]);
 //parse header data
 preg_match('/X-Git-Update: (.*?)\n/',$output,$xgitdate);
 $gitdate = trim($xgitdate[1]);
+//$gitdate = strtotime($gitdate);
 preg_match('/X-Git-Revision: (.*?)\n/',$output,$xgitrev);
 $gitrev = trim($xgitrev[1]);
 preg_match('/X-Runtime: (.*?)\n/',$output,$xruntime);
@@ -113,18 +116,26 @@ $uptime = preg_replace("/,/", ".", $matchper[1][0]);
 //last check
 preg_match_all('/<h3>Last checked<\/h3>
 <p>(.*?)</',$pingdom,$matchdate);
+
 $pingdom_timestamp = $matchdate[1][0];
-if ($pingdom_timestamp) {
+$Date_parts = preg_split("/[\s-]+/", $pingdom_timestamp);
+if (strlen($Date_parts[0]) == "2") {
 //echo $pingdom_timestamp;
 $pingdomdate = $pingdom_timestamp;
 }
 else {
-$splitdate = explode(" ",$matchdate[1][0]);
-$newtimestamp = $splitdate[0];
-#$dateTime = DateTime::createFromFormat('d/m/Y H:i:s', $matchdate[1][0]);
-#$newunpin = strtotime($dateTime->format('Y-m-d h:i:s a'));
-//echo $splitdate[0];
-$pingdomdate = $splitdate[0];
+//$splitdate = explode(" ",$matchdate[1][0]);
+//echo $row[$i]['pingdomurl'].$thismonth;
+//$newtimestamp = $splitdate[0];
+//$matchdate[1][0] = preg_replace("/./", "/", $matchdate[1][0]);
+//echo $matchdate[1][0];
+//$dateTime = DateTime::createFromFormat('d/m/Y H:i:s', $matchdate[1][0]);
+//$dateTime = DateTime::createFromFormat('m.d.Y. H:i:s', $matchdate[1][0]);
+//$newunpin = strtotime($dateTime->format('Y-m-d h:i:s a'));
+//fuck it so many date formats from pingdom
+$pingdomdate = date('Y-m-d H:i:s');
+//echo $dateTime->format('Y-m-d h:i:s a');
+//$pingdomdate = $splitdate[0];
 }
 
 //status
@@ -146,8 +157,8 @@ else {$live="error";}
 
 
 //end foreach
+sleep(20);
  }
-
  }   
      pg_free_result($result);
     

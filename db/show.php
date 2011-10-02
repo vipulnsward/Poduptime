@@ -19,16 +19,20 @@ od last updated from the main Diaspora code.">?</a></th>
  if (!$dbh) {
      die("Error in connection: " . pg_last_error());
  }  
+ if ($_GET['hidden'] == "true") {
+ $sql = "SELECT * FROM pods WHERE hidden <> 'no'";
+ } else {
  $sql = "SELECT * FROM pods WHERE hidden <> 'yes'";
+ }
  $result = pg_query($dbh, $sql);
  if (!$result) {
      die("Error in SQL query: " . pg_last_error());
  }   
  while ($row = pg_fetch_array($result)) {
 if ($row["secure"] == "true") {$method = "https://";$class="green";} else {$method = "http://";$class="red";} 
-     echo "<tr><td class='tipsy' title='SSL Cert ".$row["sslvalid"]."'><a class='$class' target='new' href='". $method . $row["domain"] ."'>" . $method . $row["domain"] . "</a></td>";
+     echo "<tr><td><a class='$class' target='new' href='". $method . $row["domain"] ."'>" . $method . $row["domain"] . "</a></td>";
      echo "<td>" . $row["status"] . "</td>";
-     echo "<td class='tipsy' title='Git Revision ".$row["hgitref"]."'>" . $row["hgitdate"] . "</td>";
+     echo "<td class='tipsy' title='Git Revision ".$row["hgitref"]."'><div id='".$row["hgitdate"]."' class='utc-timestamp'>" . strtotime($row["hgitdate"]) . "</div></td>";
      echo "<td>" . $row["uptimelast7"] . "</td>";
      echo "<td class='tipsy' title='Last Check ".$row["dateupdated"]." '><a target='new' href='".$row["pingdomurl"]."'>" . $row["monthsmonitored"] . "</a></td>";
      echo "<td>" . $row["responsetimelast7"] . "</td>";

@@ -1,13 +1,13 @@
 function get_date(timestamp) {
   var date = new Date(timestamp * 1000);
-  return [date.getDate(),date.getMonth() + 1, date.getFullYear()].join('/');
+  return [date.getMonth()+1,date.getDate(), date.getFullYear()].join('/');
 }
 $(document).ready(function(){
   $('.tipsy').tipsy();
   $('#add').click(function() {
-    $('#howto').show('slow'); $('#add').hide('slow');$('#content').hide('slow');
+    $('#howto').show('slow'); $('#add').hide('slow');$('#results').hide('slow');
   });
-  $("#myTable").tablesorter( {sortList: [[3,1], [4,1]]} );
+  $("#myTable").tablesorter( {sortList: [[2,1], [3,1]]} );
   $('#add').delay(8000).fadeIn(2000);
   $('#others').delay(8000).fadeIn(2000);
   $('#buttonsy').delay(5550).slideDown(3330);
