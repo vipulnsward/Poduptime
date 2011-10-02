@@ -17,7 +17,7 @@ if ($_GET['format'] == "json") {
 //json output WIP
 header('Content-type: application/json');
 echo '{';
-echo '"podcount": "'.json_encode($numrows).'"';
+echo '"podcount": '.json_encode($numrows);
 //
 echo '"pods": [';
  while ($row = pg_fetch_array($result)) {
@@ -35,7 +35,7 @@ echo '"pods": [';
   echo '"Git Rev":"'.$method.$row["hgitref"].'",';
   echo '"Pingdom Url":"'.$method.$row["pingdomurl"].'",';
   echo '"Pingdom Last":"'.$method.$row["pingdomlast"].'",';
-  echo '"Months Monitored":"'.$method.$row["months"].'",';
+  echo '"Months Monitored":'.$method.$row["monthsmonitored"].',';
   echo '"Uptime":"'.$method.$row["uptimelast7"].'",';
   echo '"Responsetime":"'.$method.$row["responsetimelast7"].'",';
   echo '"Server Runtime":"'.$method.$row["hruntime"].'",';
