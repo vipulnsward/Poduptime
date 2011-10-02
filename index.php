@@ -1,4 +1,4 @@
-<html><head><title>Diaspora Pod uptime - Find your new social home</title>
+<!doctype html><html><head><meta charset="utf-8"><title>Diaspora Pod uptime - Find your new social home</title>
 <meta name="keywords" content="diaspora, podupti.me, diasp, diasporg, diasp.org, facebook, open source social, open source facebook, open source social network" />
 <meta name="description" content="Diaspora Pod Live Status. diasp.org pod uptime monitor for Diaspora pods" />
 <script type="text/javascript" src="/js/jquery-1.6.4.min.js"></script> 
