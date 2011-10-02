@@ -1,3 +1,4 @@
+<?php include("vendor/Mobile_Detect.php"); ?>
 <html><head><title>Diaspora Pod uptime - Find your new social home</title>
 <meta name="keywords" content="diaspora, podupti.me, diasp, diasporg, diasp.org, facebook, open source social, open source facebook, open source social network" />
 <meta name="description" content="Diaspora Pod Live Status. diasp.org pod uptime monitor for Diaspora pods" />
@@ -8,6 +9,7 @@
 <script type="text/javascript" src="/js/podup.js"></script>
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
 <link rel="stylesheet" href="/css/newstyle.css" />
+<?php if ($detect->isMobile()) {echo "<link rel='stylesheet' href='/css/mobile.css' />";} ?>
 <script type="text/javascript">
 (function() {
 var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];

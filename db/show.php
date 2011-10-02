@@ -29,8 +29,8 @@ od last updated from the main Diaspora code.">?</a></th>
      die("Error in SQL query: " . pg_last_error());
  }   
  while ($row = pg_fetch_array($result)) {
-if ($row["secure"] == "true") {$method = "https://";$class="green";} else {$method = "http://";$class="red";} 
-     echo "<tr><td><a class='$class' target='new' href='". $method . $row["domain"] ."'>" . $method . $row["domain"] . "</a></td>";
+if ($row["secure"] == "true") {$method = "https://";$class="green";$tip="This pod uses SSL encryption for traffic.";} else {$method = "http://";$class="red";$tip="This pod does not offer SSL";} 
+     echo "<tr><td class='tipsy' title='".$tip."'><a class='$class' target='new' href='". $method . $row["domain"] ."'>" . $method . $row["domain"] . "</a></td>";
      echo "<td>" . $row["status"] . "</td>";
      echo "<td class='tipsy' title='Git Revision ".$row["hgitref"]."'><div id='".$row["hgitdate"]."' class='utc-timestamp'>" . strtotime($row["hgitdate"]) . "</div></td>";
      echo "<td>" . $row["uptimelast7"] . "</td>";
