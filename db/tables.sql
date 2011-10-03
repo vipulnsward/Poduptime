@@ -38,3 +38,12 @@ CREATE TABLE rating_comments (
  userurl text,
  date timestamp DEFAULT current_timestamp
 );
+CREATE TABLE users (
+ id serial8 UNIQUE PRIMARY KEY,
+ admin int NOT NULL,
+ username text UNIQUE NOT NULL,
+ password text NOT NULL,
+ userurl text,
+ userpod text,
+ dateCreated timestamp DEFAULT current_timestamp
+);
