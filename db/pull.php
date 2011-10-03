@@ -9,7 +9,7 @@
      }
 //foreach pod check it and update db    
  if ($_GET['domain']) {$domain=$_GET['domain'];$sql = "SELECT domain,pingdomurl,score FROM pods WHERE domain = '$domain'";$sleep="0";} 
- else {$sql = "SELECT domain,pingdomurl,score FROM pods";$sleep="18";}
+ else {$sql = "SELECT domain,pingdomurl,score FROM pods";$sleep="1";}
 
  $result = pg_query($dbh, $sql);
  if (!$result) {
@@ -36,8 +36,12 @@
      $adminratingavg[] = $myrow['rating'];$adminrate++;
    } 
  }
-$userrating = array_sum($userratingavg) / $userrate;
-$adminrating = array_sum($adminratingavg) / $adminrate;
+echo array_sum($userratingavg);
+echo "divided by";
+echo $userrate;
+
+$userrating = round(array_sum($userratingavg) / $userrate,2);
+$adminrating = round(array_sum($adminratingavg) / $adminrate,2);
 echo $domain."\n";
 echo $userrating."\n";
 echo $adminrating."\n";
@@ -49,7 +53,9 @@ if ($adminrating > 10) {$adminrating=10;}
      pg_free_result($ratings);
 echo $userrating."\n";
 echo $adminrating."\n";
-
+$userrate=0;$adminrate=0;
+unset($userratingavg);
+unset($adminratingavg);
      //curl the header of pod with and without https
 
         $chss = curl_init();
