@@ -8,6 +8,7 @@ CREATE TABLE pods (
  hidden text DEFAULT 'yes',
  ip cidr,
  ptr text,
+ country text,
  email text,
  ipv6 text,
  secure text,
