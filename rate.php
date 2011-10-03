@@ -49,7 +49,7 @@ $("#rating").prop( "value", value )
      die("Error in SQL query: " . pg_last_error());
  }   
  $numrows = pg_num_rows($result); 
-echo "<h3>".$_GET["domain"]." ratings</h3><div id='ratings'><input id='addrating' class='btn primary' type='submit' value='Add a Rating'><hr>"; 
+echo "<h3>Podupti.me ratings for ".$_GET["domain"]." pod (beta feature)</h3><div id='ratings'><input id='addrating' class='btn primary' type='submit' value='Add a Rating'><hr>"; 
 if (!$numrows) {echo "<b>This pod has no rating yet!</b>";}
  while ($row = pg_fetch_array($result)) {
  if ($row["admin"] == 1) {

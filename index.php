@@ -5,10 +5,14 @@
 <script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script> 
 <script type="text/javascript" src="/js/jquery.loading.1.6.4.min.js"></script> 
 <script type="text/javascript" src="/js/jquery.tipsy.js"></script>
-<script type="text/javascript" src="/vendor/facebox/src/facebox.js"></script>
 <script type="text/javascript" src="/js/podup.js"></script>
+<script type="text/javascript" src="/vendor/facebox/src/facebox.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
 <link rel="stylesheet" href="/css/newstyle.css" />
+<link rel="stylesheet" href="/vendor/facebox/src/facebox.css" />
+
 <?php include("vendor/Mobile_Detect.php");$detect = new Mobile_Detect();if ($detect->isMobile()) {echo '<link rel="stylesheet" href="/css/mobile.css" /><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">';} ?>
 <script type="text/javascript">
 (function() {
@@ -94,7 +98,7 @@ This site is a service of <a href="https://diasp.org">Diasp.org Pod</a><br>
 
     <div class="content">
       <div id="results">
-        <?php include("/var/www/podup/db/show.php"); ?>
+        <?php include("show.php"); ?>
       </div>
       <div id="add">
         Pod Host? <u style="cursor: pointer; cursor: hand;">Click here</u> to manage your listing.<br>
