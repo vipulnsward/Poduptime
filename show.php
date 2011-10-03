@@ -38,7 +38,7 @@ if ($row["secure"] == "true") {$method = "https://";$class="green";$tip="This po
      echo "<td>" . $row["uptimelast7"] . "</td>";
      echo "<td><div title='Last Check ".$row["dateupdated"]."' class='tipsy'><a target='new' href='".$row["pingdomurl"]."'>" . $row["monthsmonitored"] . "</a></div></td>";
 if ($row["userrating"] >6) {$userratingclass="green";} elseif ($row["userrating"] <7) {$userratingclass="yellow";} elseif ($row["userrating"] <3) {$userratingclass="red";}
-     echo "<td><a rel=\"facebox\" href=\"rate.php?domain=".$row["domain"]."\"><div class='tipsy rating ".$userratingclass."' title='User rating is ".$row["adminrating"]."'>";
+     echo "<td><a rel=\"facebox\" href=\"rate.php?domain=".$row["domain"]."\"><div class='tipsy rating ".$userratingclass."' title='User rating is ".$row["userrating"]."'>";
 for ($i = 0; $i < $row["userrating"]; $i++) { 
 echo "✪";
 }

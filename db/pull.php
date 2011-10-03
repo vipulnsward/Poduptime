@@ -30,15 +30,17 @@
  }
  $numratings = pg_num_rows($ratings);
  while($myrow = pg_fetch_assoc($ratings)) {
-   if ($myrow['admin'] =0) {
+   if ($myrow['admin'] == 0) {
      $userratingavg[] = $myrow['rating'];$userrate++;
-   } elseif ($myrow['admin'] =1) {
+   } elseif ($myrow['admin'] == 1) {
      $adminratingavg[] = $myrow['rating'];$adminrate++;
    } 
  }
 $userrating = array_sum($userratingavg) / $userrate;
 $adminrating = array_sum($adminratingavg) / $adminrate;
+echo $userrating;
 if (!$userrating) {$userrating=8;}
+echo $userrating;
 if ($userrating > 10) {$userrating=10;}
 if (!$adminrating) {$adminrating=8;}
 if ($adminrating > 10) {$adminrating=10;}
@@ -192,7 +194,7 @@ elseif (strpos($pingdom,"class=\"down\"")) { $live="down"; }
 elseif (strpos($pingdom,"class=\"paused\"")) { $live="paused";}
 else {$live="error";}
 
-
+echo $userrating;
 //sql it
      $timenow = date('Y-m-d H:i:s');
      $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6', monthsmonitored='$months', uptimelast7='$uptime', status='$live', dateLaststats='$pingdomdate', dateUpdated='$timenow', responsetimelast7='$responsetime', score='$score', adminrating='$adminrating', userrating='$userrating' WHERE domain='$domain'";

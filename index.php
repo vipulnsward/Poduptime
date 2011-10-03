@@ -103,6 +103,7 @@ This site is a service of <a href="https://diasp.org">Diasp.org Pod</a><br>
       <div id="add">
         Pod Host? <u style="cursor: pointer; cursor: hand;">Click here</u> to manage your listing.<br>
         Our source is on <a href="https://github.com/diasporg/Poduptime">GitHub</a><br><br>
+        Some pods are <a href="http://podupti.me/?hidden=true">Hidden</a> That have too many issues.<br><br>
       </div>
       <div id="howto" style="display:none; margin-left:50px">
         <br>
