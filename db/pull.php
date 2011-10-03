@@ -39,7 +39,9 @@
 $userrating = array_sum($userratingavg) / $userrate;
 $adminrating = array_sum($adminratingavg) / $adminrate;
 if (!$userrating) {$userrating=8;}
+if ($userrating > 10) {$userrating=10;}
 if (!$adminrating) {$adminrating=8;}
+if ($adminrating > 10) {$adminrating=10;}
      pg_free_result($ratings);
 
 
