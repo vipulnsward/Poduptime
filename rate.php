@@ -49,15 +49,15 @@ $("#rating").prop( "value", value )
      die("Error in SQL query: " . pg_last_error());
  }   
  $numrows = pg_num_rows($result); 
-echo "<h3>Podupti.me ratings for ".$_GET["domain"]." pod (beta feature)</h3><div id='ratings'><input id='addrating' class='btn primary' type='submit' value='Add a Rating'><hr>"; 
+echo "<input id='addrating' class='btn primary' style='float:right;margin-right:15px;' type='submit' value='Add a Rating'><h3>Podupti.me ratings for ".$_GET["domain"]." pod (beta feature)</h3><div id='ratings'><hr>"; 
 if (!$numrows) {echo "<b>This pod has no rating yet!</b>";}
  while ($row = pg_fetch_array($result)) {
  if ($row["admin"] == 1) {
 echo "Poduptime Approved Comment - User: <b>".$row["username"]."</b> Url: <a href='".$row["userurl"]."'>".$row["userurl"]."</a> Rating: <b>".$row["rating"]."</b> <br>";
-echo "<i>".$row["comment"]."</i><br><span class='label'>".$row["date"]."</span><hr><br>";
+echo "<i>".$row["comment"]."</i><span class='label' style='float:right;margin-right:115px;'>".$row["date"]."</span><hr>";
  } elseif ($row["admin"] == 0) {
 echo "User Comment - User: <b>".$row["username"]."</b> Url: <a href='".$row["userurl"]."'>".$row["userurl"]."</a> Rating: <b>".$row["rating"]."</b> <br>";
-echo "<i>".$row["comment"]."</i><br><span class='label'>".$row["date"]."</span><hr><br>";
+echo "<i>".$row["comment"]."</i><span class='label' style='float:right;margin-right:115px;'>".$row["date"]."</span><hr style='margin-top:0;margin-bottom:15px;'>";
  }
 }
 echo <<<EOF
