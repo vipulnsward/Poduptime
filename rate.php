@@ -54,10 +54,10 @@ if (!$numrows) {echo "<b>This pod has no rating yet!</b>";}
  while ($row = pg_fetch_array($result)) {
  if ($row["admin"] == 1) {
 echo "Poduptime Approved Comment - User: <b>".$row["username"]."</b> Url: <a href='".$row["userurl"]."'>".$row["userurl"]."</a> Rating: <b>".$row["rating"]."</b> <br>";
-echo "<i>".$row["comment"]."</i><hr><br>";
+echo "<i>".$row["comment"]."</i><br><span class='label'>".$row["date"]."</span><hr><br>";
  } elseif ($row["admin"] == 0) {
 echo "User Comment - User: <b>".$row["username"]."</b> Url: <a href='".$row["userurl"]."'>".$row["userurl"]."</a> Rating: <b>".$row["rating"]."</b> <br>";
-echo "<i>".$row["comment"]."</i><hr><br>";
+echo "<i>".$row["comment"]."</i><br><span class='label'>".$row["date"]."</span><hr><br>";
  }
 }
 echo <<<EOF
