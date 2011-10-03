@@ -6,7 +6,7 @@ CREATE TABLE pods (
  userrating decimal DEFAULT 10,
  whois text,
  hidden text DEFAULT 'yes',
- ip cidr,
+ ip text,
  ptr text,
  country text,
  email text,

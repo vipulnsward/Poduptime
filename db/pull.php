@@ -38,15 +38,17 @@
  }
 $userrating = array_sum($userratingavg) / $userrate;
 $adminrating = array_sum($adminratingavg) / $adminrate;
-echo $userrating;
+echo $domain."\n";
+echo $userrating."\n";
+echo $adminrating."\n";
+
 if (!$userrating) {$userrating=8;}
-echo $userrating;
 if ($userrating > 10) {$userrating=10;}
 if (!$adminrating) {$adminrating=8;}
 if ($adminrating > 10) {$adminrating=10;}
      pg_free_result($ratings);
-
-
+echo $userrating."\n";
+echo $adminrating."\n";
 
      //curl the header of pod with and without https
 
@@ -194,7 +196,6 @@ elseif (strpos($pingdom,"class=\"down\"")) { $live="down"; }
 elseif (strpos($pingdom,"class=\"paused\"")) { $live="paused";}
 else {$live="error";}
 
-echo $userrating;
 //sql it
      $timenow = date('Y-m-d H:i:s');
      $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6', monthsmonitored='$months', uptimelast7='$uptime', status='$live', dateLaststats='$pingdomdate', dateUpdated='$timenow', responsetimelast7='$responsetime', score='$score', adminrating='$adminrating', userrating='$userrating' WHERE domain='$domain'";
