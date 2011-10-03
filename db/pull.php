@@ -19,6 +19,17 @@
  for ($i = 0; $i < $numrows; $i++) {
      $domain =  $row[$i]['domain'];
      $score = $row[$i]['score'];
+//get ratings
+$sqlforr = "SELECT rating FROM rating_comments WHERE domain = '$domain'";
+$ratings = pg_query($dbh, $sqlforr);
+ if (!$ratings) {
+     die("Error in SQL query: " . pg_last_error());
+ }
+var_dump($ratings);
+//while ($rrow = pg_fetch_all($ratings)) {
+//echo $rrow['rating'];
+//}
+
      //curl the header of pod with and without https
 
         $chss = curl_init();

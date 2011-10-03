@@ -34,5 +34,6 @@ CREATE TABLE rating_comments (
  pod_id int,
  rating int,
  username text,
- userurl text
+ userurl text,
+ date timestamp DEFAULT current_timestamp
 );
