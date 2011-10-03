@@ -44,7 +44,7 @@ echo "✪";
 }
 if ($row["adminrating"] >6) {$adminratingclass="green";} elseif ($row["adminrating"] <7) {$adminratingclass="yellow";} elseif ($row["adminrating"] <3) {$adminratingclass="red";}
      echo "</div><br><div class='tipsy rating ".$adminratingclass."' backendscore='".$row["score"]."' title='Poduptime Approved rating is ".$row["adminrating"]."'>";
-for ($i = 0; $i < $row["adminrating"]; $i++) {
+for ($iw = 0; $iw < $row["adminrating"]; $iw++) {
 echo "✪";
 }
 
