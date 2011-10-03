@@ -53,7 +53,7 @@ echo "<h3>".$_GET["domain"]." ratings</h3><div id='ratings'><input id='addrating
 if (!$numrows) {echo "<b>This pod has no rating yet!</b>";}
  while ($row = pg_fetch_array($result)) {
  if ($row["admin"] == 1) {
-echo "Poduptime Comment - User: <b>".$row["username"]."</b> Url: <a href='".$row["userurl"]."'>".$row["userurl"]."</a> Rating: <b>".$row["rating"]."</b> <br>";
+echo "Poduptime Approved Comment - User: <b>".$row["username"]."</b> Url: <a href='".$row["userurl"]."'>".$row["userurl"]."</a> Rating: <b>".$row["rating"]."</b> <br>";
 echo "<i>".$row["comment"]."</i><hr><br>";
  } elseif ($row["admin"] == 0) {
 echo "User Comment - User: <b>".$row["username"]."</b> Url: <a href='".$row["userurl"]."'>".$row["userurl"]."</a> Rating: <b>".$row["rating"]."</b> <br>";

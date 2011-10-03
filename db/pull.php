@@ -3,7 +3,8 @@
 //* Copyright (c) 2011, David Morley. This file is licensed under the Affero General Public License version 3 or later. See the COPYRIGHT file. */
  include('config.php');
  $dbh = pg_connect("dbname=$pgdb user=$pguser password=$pgpass");
-     if (!$dbh) {
+ $dbh2 = pg_connect("dbname=$pgdb user=$pguser password=$pgpass"); 
+    if (!$dbh) {
          die("Error in connection: " . pg_last_error());
      }
 //foreach pod check it and update db    
@@ -19,16 +20,29 @@
  for ($i = 0; $i < $numrows; $i++) {
      $domain =  $row[$i]['domain'];
      $score = $row[$i]['score'];
+
 //get ratings
-$sqlforr = "SELECT rating FROM rating_comments WHERE domain = '$domain'";
-$ratings = pg_query($dbh, $sqlforr);
+ $userrate=0;$adminrate=0;
+ $sqlforr = "SELECT * FROM rating_comments WHERE domain = '$domain'";
+ $ratings = pg_query($dbh, $sqlforr);
  if (!$ratings) {
      die("Error in SQL query: " . pg_last_error());
  }
-var_dump($ratings);
-//while ($rrow = pg_fetch_all($ratings)) {
-//echo $rrow['rating'];
-//}
+ $numratings = pg_num_rows($ratings);
+ while($myrow = pg_fetch_assoc($ratings)) {
+   if ($myrow['admin'] =0) {
+     $userratingavg[] = $myrow['rating'];$userrate++;
+   } elseif ($myrow['admin'] =1) {
+     $adminratingavg[] = $myrow['rating'];$adminrate++;
+   } 
+ }
+$userrating = array_sum($userratingavg) / $userrate;
+$adminrating = array_sum($adminratingavg) / $adminrate;
+if (!$userrating) {$userrating=8;}
+if (!$adminrating) {$adminrating=8;}
+     pg_free_result($ratings);
+
+
 
      //curl the header of pod with and without https
 
@@ -179,7 +193,7 @@ else {$live="error";}
 
 //sql it
      $timenow = date('Y-m-d H:i:s');
-     $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6', monthsmonitored='$months', uptimelast7='$uptime', status='$live', dateLaststats='$pingdomdate', dateUpdated='$timenow', responsetimelast7='$responsetime', score='$score' WHERE domain='$domain'";
+     $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6', monthsmonitored='$months', uptimelast7='$uptime', status='$live', dateLaststats='$pingdomdate', dateUpdated='$timenow', responsetimelast7='$responsetime', score='$score', adminrating='$adminrating', userrating='$userrating' WHERE domain='$domain'";
      $result = pg_query($dbh, $sql);
      if (!$result) {
          die("Error in SQL query: " . pg_last_error());
