@@ -9,7 +9,7 @@
      }
 //foreach pod check it and update db    
  if ($_GET['domain']) {$domain=$_GET['domain'];$sql = "SELECT domain,pingdomurl,score FROM pods WHERE domain = '$domain'";$sleep="0";} 
- else {$sql = "SELECT domain,pingdomurl,score FROM pods";$sleep="1";}
+ else {$sql = "SELECT domain,pingdomurl,score FROM pods";$sleep="19";}
 
  $result = pg_query($dbh, $sql);
  if (!$result) {
@@ -46,9 +46,9 @@ echo $domain."\n";
 echo $userrating."\n";
 echo $adminrating."\n";
 
-if (!$userrating) {$userrating=8;}
+if (!$userrating) {$userrating=0;}
 if ($userrating > 10) {$userrating=10;}
-if (!$adminrating) {$adminrating=8;}
+if (!$adminrating) {$adminrating=0;}
 if ($adminrating > 10) {$adminrating=10;}
      pg_free_result($ratings);
 echo $userrating."\n";
