@@ -39,7 +39,7 @@ if ($row["secure"] == "true") {$method = "https://";$class="green";$tip="This po
      echo "<td><div title='Last Check ".$row["dateupdated"]."' class='tipsy'><a target='new' href='".$row["pingdomurl"]."'>" . $row["monthsmonitored"] . "</a></div></td>";
 if ($row["userrating"] >6) {$userratingclass="green";} elseif ($row["userrating"] <7) {$userratingclass="yellow";} elseif ($row["userrating"] <3) {$userratingclass="red";}
      echo "<td><a rel=\"facebox\" href=\"rate.php?domain=".$row["domain"]."\"><div class='tipsy rating ".$userratingclass."' title='User rating is ".$row["userrating"]."'>";
-if ($row["userrating"]) {echo "no rating yet";}
+if ($row["userrating"] == 0) {echo "no rating yet";}
 for ($i = 0; $i < $row["userrating"]; $i++) { 
 echo "✪";
 }
@@ -51,7 +51,7 @@ echo "✪";
 
      echo "</div></a></td>";
      echo "<td>" . $row["responsetimelast7"] . "</td>";
-     echo "<td class='tipsy' title='IP Address ".$row["ip"]." '>" . $row["ipv6"] . "</td></tr>\n";
+     echo "<td class='tipsy' title='IP Address ".$row["ip"]." Ip Data ".$row["country"]." '>" . $row["ipv6"] . "</td></tr>\n";
  }
  pg_free_result($result);       
  pg_close($dbh);

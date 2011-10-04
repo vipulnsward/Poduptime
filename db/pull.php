@@ -143,6 +143,17 @@ $ipv6="no";
 } else {
 $ipv6="yes";
 }
+//curl ip
+        $hostip = curl_init();
+        curl_setopt($hostip, CURLOPT_URL, "http://api.hostip.info/get_html.php?ip=".$ipnum);
+        curl_setopt($hostip, CURLOPT_POST, 0);
+        curl_setopt($hostip, CURLOPT_HEADER, 0);
+        curl_setopt($hostip, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($hostip, CURLOPT_NOBODY, 0);
+        curl_setopt($hostip, CURLOPT_MAXCONNECTS, 5);
+        curl_setopt($hostip, CURLOPT_FOLLOWLOCATION, true);
+        $ipdata = curl_exec($hostip);
+        curl_close($hostip);
 
 //curl the pingdom page 
         $ping = curl_init();
@@ -204,7 +215,7 @@ else {$live="error";}
 
 //sql it
      $timenow = date('Y-m-d H:i:s');
-     $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6', monthsmonitored='$months', uptimelast7='$uptime', status='$live', dateLaststats='$pingdomdate', dateUpdated='$timenow', responsetimelast7='$responsetime', score='$score', adminrating='$adminrating', userrating='$userrating' WHERE domain='$domain'";
+     $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6', monthsmonitored='$months', uptimelast7='$uptime', status='$live', dateLaststats='$pingdomdate', dateUpdated='$timenow', responsetimelast7='$responsetime', score='$score', adminrating='$adminrating', country='$ipdata', userrating='$userrating' WHERE domain='$domain'";
      $result = pg_query($dbh, $sql);
      if (!$result) {
          die("Error in SQL query: " . pg_last_error());
