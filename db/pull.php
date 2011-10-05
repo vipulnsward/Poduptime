@@ -145,16 +145,21 @@ $ipv6="yes";
 }
 //curl ip
         $hostip = curl_init();
-        curl_setopt($hostip, CURLOPT_URL, "http://api.hostip.info/get_html.php?ip=".$ipnum);
+        curl_setopt($hostip, CURLOPT_URL, "http://api.ip2locationapi.com/?user=".$geouser."&key=".$geokey."&format=text&ip=".$ipnum);
         curl_setopt($hostip, CURLOPT_POST, 0);
         curl_setopt($hostip, CURLOPT_HEADER, 0);
         curl_setopt($hostip, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($hostip, CURLOPT_NOBODY, 0);
         curl_setopt($hostip, CURLOPT_MAXCONNECTS, 5);
         curl_setopt($hostip, CURLOPT_FOLLOWLOCATION, true);
-        $ipdata = curl_exec($hostip);
+        $ipraw = curl_exec($hostip);
         curl_close($hostip);
+$iparray = explode(",",$ipraw);
+if ($iparray[1] != "-") {$ipdata = "Country: $iparray[1]\n";}
+if ($iparray[2] != "-") {$ipdata .= "Region: $iparray[2]\n";}
+if ($iparray[3] != "-") {$ipdata .= "City: $iparray[3]\n";}
 
+echo $ipdata;
 //curl the pingdom page 
         $ping = curl_init();
         $thismonth = "/".date("Y")."/".date("m");
