@@ -58,7 +58,7 @@ echo ']';
 echo '}';
 } else {
  $i=0;
- $sql = "SELECT * FROM pods WHERE hidden <> 'yes'";
+ $sql = "SELECT * FROM pods WHERE hidden <> 'yes' ORDER BY Hgitdate DESC, uptimelast7 DESC";
  $result = pg_query($dbh, $sql);
  if (!$result) {
      die("Error in SQL query: " . pg_last_error());
