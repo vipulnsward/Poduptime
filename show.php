@@ -23,9 +23,9 @@ od last updated from the main Diaspora code.">?</a></th>
      die("Error in connection: " . pg_last_error());
  }  
  if ($_GET['hidden'] == "true") {
- $sql = "SELECT * FROM pods WHERE hidden <> 'no'";
+ $sql = "SELECT * FROM pods WHERE hidden <> 'no' ORDER BY Hgitdate DESC, uptimelast7 DESC";
  } else {
- $sql = "SELECT * FROM pods WHERE hidden <> 'yes'";
+ $sql = "SELECT * FROM pods WHERE hidden <> 'yes' ORDER BY Hgitdate DESC, uptimelast7 DESC";
  }
  $result = pg_query($dbh, $sql);
  if (!$result) {
