@@ -52,7 +52,7 @@ echo "✪";
 
      echo "</div></a></td>";
      echo "<td>" . $row["responsetimelast7"] . "</td>";
-     echo "<td class='tipsy' title='IP Address ".$row["ip"]." '>" . $row["ipv6"] . "</td>\n";
+     echo "<td>" . $row["ipv6"] . "</td>\n";
      echo "<td class='tipsy' title='IP Address ".$row["ip"]." '>" . $row["country"] . "</td></tr>\n";
  }
  pg_free_result($result);       

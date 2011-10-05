@@ -119,7 +119,7 @@ $score = $score - 1;
 if (!$gitdate) {
 //if a pod is not displaying the git header data its really really really old lets lower your score
 //$hidden="yes";
-$score = $score - 1;
+$score = $score - 2;
 }
 if ($score > 5) {
 $hidden = "no";
