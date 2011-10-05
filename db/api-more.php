@@ -19,7 +19,7 @@
      echo "Months Monitored: " . $row["monthsmonitored"] . "<br>";
      echo "Response Time: " . $row["responsetimelast7"] . "<br>";
      echo "User Rating: ". $row["userrating"] . "<br>";
-     echo "Country: ". $row["country"] . "<br>";
+     echo "Server Location: ". $row["country"] . "<br>";
  }
  pg_free_result($result);       
  pg_close($dbh);

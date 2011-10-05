@@ -156,7 +156,6 @@ $ipv6="yes";
         curl_close($hostip);
 $iparray = explode(",",$ipraw);
 if ($iparray[1] != "-") {$ipdata = "Country: $iparray[1]\n";}
-if ($iparray[2] != "-") {$ipdata .= "Region: $iparray[2]\n";}
 if ($iparray[3] != "-") {$ipdata .= "City: $iparray[3]\n";}
 
 echo $ipdata;

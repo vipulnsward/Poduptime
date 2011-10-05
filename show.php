@@ -12,6 +12,7 @@ od last updated from the main Diaspora code.">?</a></th>
 <th>Rating<a class="tipsy" title="User and Admin rating for this pod.">?</a></th>
 <th>Response Time<a class="tipsy" title="Average response time for <?php echo date("F") ?>.">?</a></th>
 <th>Ipv6<a class="tipsy" title="Does this pod look to have ipv6">?</a></th>
+<th>Location<a class="tipsy" title="Pod location, based on IP Geolocation">?</a></th>
 </tr>
 </thead>
 <tbody>
@@ -51,7 +52,8 @@ echo "✪";
 
      echo "</div></a></td>";
      echo "<td>" . $row["responsetimelast7"] . "</td>";
-     echo "<td class='tipsy' title='IP Address ".$row["ip"]." Ip Data ".$row["country"]." '>" . $row["ipv6"] . "</td></tr>\n";
+     echo "<td class='tipsy' title='IP Address ".$row["ip"]." '>" . $row["ipv6"] . "</td>\n";
+     echo "<td class='tipsy' title='IP Address ".$row["ip"]." '>" . $row["country"] . "</td></tr>\n";
  }
  pg_free_result($result);       
  pg_close($dbh);
