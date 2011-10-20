@@ -42,7 +42,12 @@ echo "pingdom report already exists";die;
      if (!$result) {
          die("Error in SQL query: " . pg_last_error());
      }
-    
+     $to = $adminemail;
+     $subject = "New pod added to poduptime ";
+     $message = "http://podupti.me\n\n Pingdom Url:" . $_POST["url"] . "\n\n Pod:" . $_POST["domain"] . "\n\n";
+     $headers = "From: ".$_POST["email"]."\r\nReply-To: ".$_POST["email"]."\r\n";
+     @mail( $to, $subject, $message, $headers );    
+
      echo "Data successfully inserted! Your pod will be reviewed and live on the list soon!";
     
      pg_free_result($result);

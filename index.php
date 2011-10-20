@@ -49,7 +49,7 @@ s1.parentNode.insertBefore(s, s1);
     <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://podupti.me" data-text="Pod Uptime - Find a Diaspora Pod!" data-count="horizontal">Tweet</a
 ><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
     </div>
-    <div class="span2">
+    <div class="span3">
     <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fpodupti.me&amp;layout=button_count&amp;show_faces=false&amp;width=150&amp;action=recommend&amp;font
 &amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:21px;" allowTransparency="true"></iframe>
     </div>
@@ -57,9 +57,8 @@ s1.parentNode.insertBefore(s, s1);
     <a class="DiggThisButton DiggCompact"></a>
     </div>
     <div class="span2">
-    <img src="http://l.yimg.com/hr/img/delicious.small.gif" height="10" width="10" alt="Delicious" />
-      <a href="http://www.delicious.com/save" onclick="window.open('http://www.delicious.com/save?v=5&noui&jump=close&url='+encodeURIComponent(location.href)+'&title='+encodeURI
-Component(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;">Delicious</a>
+<img src="http://www.delicious.com/static/img/delicious.small.gif" height="10" width="10" alt="Delicious" />
+        <a href="http://www.delicious.com/save" onclick="window.open('http://www.delicious.com/save?v=5&noui&jump=close&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;">Delicious</a>
     </div>
     <div class="span2">
      <g:plusone></g:plusone>
@@ -74,7 +73,7 @@ Component(document.title), 'delicious','toolbar=no,width=550,height=550'); retur
 <div class="span2">
 <script src="http://www.stumbleupon.com/hostedbadge.php?s=1"></script>
  </div>
-<div class="span4">
+<div class="span4" style="font-size:9px">
 This site is a service of <a href="https://diasp.org">Diasp.org Pod</a><br>
 </div>
 </div>

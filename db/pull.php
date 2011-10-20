@@ -194,7 +194,10 @@ $pingdom_timestamp = $matchdate[1][0];
 $Date_parts = preg_split("/[\s-]+/", $pingdom_timestamp);
 if (strlen($Date_parts[0]) == "2") {
 //echo $pingdom_timestamp;
-$pingdomdate = $pingdom_timestamp;
+//this is broken also on something like 13-10-2011 09:24:11
+//$pingdomdate = $pingdom_timestamp;
+//hack
+$pingdomdate = date('Y-m-d H:i:s');
 }
 else {
 //$splitdate = explode(" ",$matchdate[1][0]);
