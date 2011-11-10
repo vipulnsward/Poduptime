@@ -1,6 +1,6 @@
 <!doctype html><html><head><meta charset="utf-8"><title>Diaspora Pod uptime - Find your new social home</title>
 <meta name="keywords" content="diaspora, podupti.me, diasp, diasporg, diasp.org, facebook, open source social, open source facebook, open source social network" />
-<meta name="description" content="Diaspora Pod Live Status. diasp.org pod uptime monitor for Diaspora pods" />
+<meta name="description" content="Diaspora Pod Live Status. Find a Diaspora pod to sign up for, rate pods, find one close to you!" />
 <script type="text/javascript" src="/js/jquery-1.6.4.min.js"></script> 
 <script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script> 
 <script type="text/javascript" src="/js/jquery.loading.1.6.4.min.js"></script> 
@@ -122,16 +122,18 @@ is mostly because of selfsigned or openca certs, if you need a free ssl cert get
         <br>Need help? <a href="http://frodointernet.com/support">Support</a>
         <br>
       </div>
-      <script type="text/javascript">
-      var pkBaseURL = (("https:" == document.location.protocol) ? "https://frodointernet.com/s/" : "http://frodointernet.com/s/");
-      document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
-      </script><script type="text/javascript">
-      try {
-      var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 3);
-      piwikTracker.trackPageView();
-      piwikTracker.enableLinkTracking();
-      } catch( err ) {}
-      </script><noscript><p><img src="http://frodointernet.com/s/piwik.php?idsite=3" style="border:0" alt="" /></p></noscript>
+<script type="text/javascript">
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(66500192);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66500192ns.gif" /></p></noscript>
       <script type="text/javascript">
       /* <![CDATA[ */
           (function() {

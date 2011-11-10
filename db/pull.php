@@ -9,7 +9,7 @@
      }
 //foreach pod check it and update db    
  if ($_GET['domain']) {$domain=$_GET['domain'];$sql = "SELECT domain,pingdomurl,score FROM pods WHERE domain = '$domain'";$sleep="0";} 
- else {$sql = "SELECT domain,pingdomurl,score FROM pods";$sleep="19";}
+ else {$sql = "SELECT domain,pingdomurl,score FROM pods";$sleep="10";}
 
  $result = pg_query($dbh, $sql);
  if (!$result) {
@@ -22,7 +22,7 @@
      $score = $row[$i]['score'];
 
 //get ratings
- $userrate=0;$adminrate=0;
+ $userrate=0;$adminrate=0;$userratingavg="";$adminratingavg="";
  $sqlforr = "SELECT * FROM rating_comments WHERE domain = '$domain'";
  $ratings = pg_query($dbh, $sqlforr);
  if (!$ratings) {
@@ -149,6 +149,7 @@ $ipv6="yes";
         curl_setopt($hostip, CURLOPT_POST, 0);
         curl_setopt($hostip, CURLOPT_HEADER, 0);
         curl_setopt($hostip, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($hostip, CURLOPT_CONNECTTIMEOUT, 5);
         curl_setopt($hostip, CURLOPT_NOBODY, 0);
         curl_setopt($hostip, CURLOPT_MAXCONNECTS, 5);
         curl_setopt($hostip, CURLOPT_FOLLOWLOCATION, true);
