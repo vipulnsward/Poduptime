@@ -147,7 +147,7 @@ $ipv6="yes";
 }
 //curl ip
         $hostip = curl_init();
-        curl_setopt($hostip, CURLOPT_URL, "http://api.ip2locationapi.com/?user=".$geouser."&key=".$geokey."&format=text&ip=".$ipnum);
+        curl_setopt($hostip, CURLOPT_URL, "http://api.infochimps.com/web/analytics/ip_mapping/digital_element/geo?apikey=".$chimpkey."&ip=".$ipnum);
         curl_setopt($hostip, CURLOPT_POST, 0);
         curl_setopt($hostip, CURLOPT_HEADER, 0);
         curl_setopt($hostip, CURLOPT_RETURNTRANSFER, 1);
@@ -157,11 +157,12 @@ $ipv6="yes";
         curl_setopt($hostip, CURLOPT_FOLLOWLOCATION, true);
         $ipraw = curl_exec($hostip);
         curl_close($hostip);
-$iparray = explode(",",$ipraw);
-if ($iparray[1] != "-") {$ipdata = "Country: $iparray[1]\n";}
-if ($iparray[3] != "-") {$ipdata .= "City: $iparray[3]\n";}
+        $obj = json_decode($ipraw);
 
-echo $ipdata;
+$ipdata = "Country: ".$obj->{'country'}."\n";
+
+$whois = "Country: ".$obj->{'country'}." City: ".$obj->{'city'}."\n Postal Code:".$obj->{'postal_code'}." Lat:".$obj->{'latitude'}." Long:".$obj->{'longitude'}." Connection:".$obj->{'conn_speed'};
+
 //curl the pingdom page 
         $ping = curl_init();
         $thismonth = "/".date("Y")."/".date("m");
@@ -226,7 +227,7 @@ else {$live="error";}
 
 //sql it
      $timenow = date('Y-m-d H:i:s');
-     $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6', monthsmonitored='$months', uptimelast7='$uptime', status='$live', dateLaststats='$pingdomdate', dateUpdated='$timenow', responsetimelast7='$responsetime', score='$score', adminrating='$adminrating', country='$ipdata', userrating='$userrating' WHERE domain='$domain'";
+     $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6', monthsmonitored='$months', uptimelast7='$uptime', status='$live', dateLaststats='$pingdomdate', dateUpdated='$timenow', responsetimelast7='$responsetime', score='$score', adminrating='$adminrating', country='$ipdata', whois='$whois', userrating='$userrating' WHERE domain='$domain'";
      $result = pg_query($dbh, $sql);
      if (!$result) {
          die("Error in SQL query: " . pg_last_error());
