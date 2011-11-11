@@ -10,8 +10,8 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
-<link rel="stylesheet" href="http://c807316.r16.cf2.rackcdn.com/newstyle.css" />
-<link rel="stylesheet" href="http://c807316.r16.cf2.rackcdn.com/facebox.css" />
+<link rel="stylesheet" href="css/newstyle.css" />
+<link rel="stylesheet" href="css/facebox.css" />
 
 <?php include("vendor/Mobile_Detect.php");$detect = new Mobile_Detect();if ($detect->isMobile()) {echo '<link rel="stylesheet" href="http://c807316.r16.cf2.rackcdn.com/mobile.css" /><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">';} ?>
 <script type="text/javascript">
