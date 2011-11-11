@@ -1,19 +1,19 @@
 <!doctype html><html><head><meta charset="utf-8"><title>Diaspora Pod uptime - Find your new social home</title>
 <meta name="keywords" content="diaspora, podupti.me, diasp, diasporg, diasp.org, facebook, open source social, open source facebook, open source social network" />
 <meta name="description" content="Diaspora Pod Live Status. Find a Diaspora pod to sign up for, rate pods, find one close to you!" />
-<script type="text/javascript" src="/js/jquery-1.6.4.min.js"></script> 
-<script type="text/javascript" src="/js/jquery.tablesorter.min.js"></script> 
-<script type="text/javascript" src="/js/jquery.loading.1.6.4.min.js"></script> 
-<script type="text/javascript" src="/js/jquery.tipsy.js"></script>
-<script type="text/javascript" src="/js/podup.js"></script>
-<script type="text/javascript" src="/vendor/facebox/src/facebox.js"></script>
+<script type="text/javascript" src="http://c807316.r16.cf2.rackcdn.com/jquery-1.6.4.min.js"></script> 
+<script type="text/javascript" src="http://c807316.r16.cf2.rackcdn.com/jquery.tablesorter.min.js"></script> 
+<script type="text/javascript" src="http://c807316.r16.cf2.rackcdn.com/jquery.loading.1.6.4.min.js"></script> 
+<script type="text/javascript" src="http://c807316.r16.cf2.rackcdn.com/jquery.tipsy.js"></script>
+<script type="text/javascript" src="http://c807316.r16.cf2.rackcdn.com/podup.js"></script>
+<script type="text/javascript" src="http://c807316.r16.cf2.rackcdn.com/facebox.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
-<link rel="stylesheet" href="/css/newstyle.css" />
-<link rel="stylesheet" href="/vendor/facebox/src/facebox.css" />
+<link rel="stylesheet" href="http://c807316.r16.cf2.rackcdn.com/newstyle.css" />
+<link rel="stylesheet" href="http://c807316.r16.cf2.rackcdn.com/facebox.css" />
 
-<?php include("vendor/Mobile_Detect.php");$detect = new Mobile_Detect();if ($detect->isMobile()) {echo '<link rel="stylesheet" href="/css/mobile.css" /><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">';} ?>
+<?php include("vendor/Mobile_Detect.php");$detect = new Mobile_Detect();if ($detect->isMobile()) {echo '<link rel="stylesheet" href="http://c807316.r16.cf2.rackcdn.com/mobile.css" /><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">';} ?>
 <script type="text/javascript">
 (function() {
 var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
@@ -74,7 +74,7 @@ s1.parentNode.insertBefore(s, s1);
 <script src="http://www.stumbleupon.com/hostedbadge.php?s=1"></script>
  </div>
 <div class="span4" style="font-size:9px">
-This site is a service of <a href="https://diasp.org">Diasp.org Pod</a><br>
+
 </div>
 </div>
     </div>
@@ -92,7 +92,7 @@ This site is a service of <a href="https://diasp.org">Diasp.org Pod</a><br>
       //--> 
       </script> 
       <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script></div>
-      <a href="https://market.android.com/details?id=appinventor.ai_david_morley.DiasporaPoduptime"><img src="/images/android-dude128.png"></a>
+      <a href="https://market.android.com/details?id=appinventor.ai_david_morley.DiasporaPoduptime"><img src="http://c807316.r16.cf2.rackcdn.com/android-dude128.png"></a>
     </div>
 
     <div class="content">
