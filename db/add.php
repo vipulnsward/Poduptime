@@ -1,5 +1,6 @@
 <!-- /* Copyright (c) 2011, David Morley. This file is licensed under the Affero General Public License version 3 or later. See the COPYRIGHT file. */ -->
 <?php
+$valid=0;
  include('config.php');
 if (!$_POST['url']){
   echo "no url given";
@@ -32,7 +33,38 @@ echo "pingdom report already exists";die;
 }
  }
 
-    
+     //curl the header of pod with and without https
+
+        $chss = curl_init();
+        curl_setopt($chss, CURLOPT_URL, "https://".$_POST['domain']);
+        curl_setopt($chss, CURLOPT_POST, 1);
+        curl_setopt($chss, CURLOPT_HEADER, 1);
+        curl_setopt($chss, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($chss, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($chss, CURLOPT_NOBODY, 1);
+        $outputssl = curl_exec($chss);
+        curl_close($chss);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "http://".$_POST['domain']);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_NOBODY, 1);
+        $output = curl_exec($ch);
+        curl_close($ch);
+
+if (stristr($outputssl, 'Set-Cookie: _diaspora_session=')) {
+  echo "Your pod has ssl and is valid<br>";
+  $valid=1;
+}
+if (stristr($output, 'Set-Cookie: _diaspora_session=')) {
+  echo "Your pod does not have ssl but is a valid pod<br>";
+  $valid=1;
+}
+
+if ($valid=="1") {    
      $pingdomurl = pg_escape_string($_POST['url']);
      $domain = pg_escape_string($_POST['domain']);
      $email = pg_escape_string($_POST['email']);
@@ -53,5 +85,8 @@ echo "pingdom report already exists";die;
      pg_free_result($result);
     
      pg_close($dbh);
+} else {
+echo "Could not validate your pod on http or https, check your setup!";
+}
 
 ?>
