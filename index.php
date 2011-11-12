@@ -8,13 +8,25 @@
 <script type="text/javascript" src="http://c807316.r16.cf2.rackcdn.com/podup.js"></script>
 <script type="text/javascript" src="http://c807316.r16.cf2.rackcdn.com/facebox.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script src="OpenLayers.js"></script>
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
-<link rel="stylesheet" href="css/newstyle.css" />
-<link rel="stylesheet" href="css/facebox.css" />
+<link rel="stylesheet" href="http://c807316.r16.cf2.rackcdn.com/newstyle.css" />
+<link rel="stylesheet" href="http://c807316.r16.cf2.rackcdn.com/facebox.css" />
 
 <?php include("vendor/Mobile_Detect.php");$detect = new Mobile_Detect();if ($detect->isMobile()) {echo '<link rel="stylesheet" href="http://c807316.r16.cf2.rackcdn.com/mobile.css" /><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">';} ?>
 <script type="text/javascript">
+function map() {
+        $('#map').empty();
+        $('#results').hide();
+        $('#add').hide();
+        var map = new OpenLayers.Map('map');
+        map.addLayer(new OpenLayers.Layer.OSM());
+        map.addControl(new OpenLayers.Control.LayerSwitcher());
+        var layer = new OpenLayers.Layer.GeoRSS("Diaspora Pods", "/api.php?key=4r45tg&format=georss");
+        map.addLayer(layer);
+        map.zoomTo(2);
+}
 (function() {
 var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
 s.type = 'text/javascript';
@@ -82,6 +94,7 @@ s1.parentNode.insertBefore(s, s1);
   </header>
   <div class="container-fluid">
     <div class="sidebar"> 
+      <a onClick="map();">Show Map View</a><br><br>
       <div class="adsense"><script type="text/javascript">
       <!-- 
       google_ad_client = "ca-pub-3662181805557062"; 
@@ -94,8 +107,8 @@ s1.parentNode.insertBefore(s, s1);
       <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script></div>
       <a href="https://market.android.com/details?id=appinventor.ai_david_morley.DiasporaPoduptime"><img src="http://c807316.r16.cf2.rackcdn.com/android-dude128.png"></a>
     </div>
-
     <div class="content">
+    <div id="map" style="width:80%;height:500px;position:absolute"></div>
       <div id="results">
         <?php include("show.php"); ?>
       </div>

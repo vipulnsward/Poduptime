@@ -6,7 +6,40 @@ if ($_GET['key'] != "4r45tg") {exit;}
  if (!$dbh) {
      die("Error in connection: " . pg_last_error());
  }  
-if ($_GET['format'] == "json") {
+if ($_GET['format'] == "georss") {
+echo <<<EOF
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" 
+  xmlns:georss="http://www.georss.org/georss">
+  <title>Diaspora Pods</title>
+  <subtitle>IP Locations of Diaspora pods on podupti.me</subtitle>
+  <link href="http://podupti.me/"/>
+EOF;
+ $sql = "SELECT * FROM pods WHERE hidden <> 'yes'";
+ $result = pg_query($dbh, $sql);
+ if (!$result) {
+     die("Error in SQL query: " . pg_last_error());
+ }
+ $numrows = pg_num_rows($result);
+while ($row = pg_fetch_array($result)) {
+if ($row["secure"] == "true") {$method = "https://";} else {$method = "http://";}
+echo <<<EOF
+  <entry>
+    <title>{$method}{$row['domain']}</title>
+    <link href="{$method}{$row['domain']}"/>
+    <id>urn:{$row['domain']}</id>
+    <summary>Location {$row['city']}, {$row['state']}<![CDATA[<br/>]]>Status {$row['status']}<![CDATA[<br/>]]>Uptime last 7 days {$row['uptimelast7']}<![CDATA[<br/>]]>Response Time {$row['responsetimelast7']}<![CDATA[<br/>]]>Last Git Update {$row['hgitdate']}<![CDATA[<br/>]]>Listed for {$row['monthsmonitored']} months<![CDATA[<br/>]]>Pingdom URL <![CDATA[<A href="{$row['pingdomurl']}">{$row['pingdomurl']}</a>]]></summary>
+    <georss:point>{$row['lat']} {$row['long']}</georss:point>
+    <georss:featureName>{$row['domain']}</georss:featureName>
+  </entry>
+
+EOF;
+}
+echo "</feed>";
+
+}
+
+elseif ($_GET['format'] == "json") {
  $i=0;
  $sql = "SELECT * FROM pods";
  $result = pg_query($dbh, $sql);
@@ -29,7 +62,7 @@ echo '"pods": [';
   echo '"city":"'.$method.$row["city"].'",';
   echo '"state":"'.$method.$row["state"].'",';
   echo '"country":"'.$method.$row["country"].'",';
-  echo '"latutude":"'.$method.$row["lat"].'",';
+  echo '"latitude":"'.$method.$row["lat"].'",';
   echo '"longitude":"'.$method.$row["long"].'",';
   echo '"postalcode":"'.$method.$row["postalcode"].'",';
   echo '"connection":"'.$method.$row["connection"].'",';
