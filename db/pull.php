@@ -163,6 +163,14 @@ $ipdata = "Country: ".$obj->{'country'}."\n";
 
 $whois = "Country: ".$obj->{'country'}." City: ".$obj->{'city'}."\n Postal Code:".$obj->{'postal_code'}." Lat:".$obj->{'latitude'}." Long:".$obj->{'longitude'}." Connection:".$obj->{'conn_speed'};
 
+$country=$obj->{'country'};
+$city=$obj->{'city'};
+$state=$obj->{'region'};
+$postalcode=$obj->{'postal_code'};
+$lat=$obj->{'latitude'};
+$long=$obj->{'longitude'};
+$connection=$obj->{'conn_speed'};
+
 //curl the pingdom page 
         $ping = curl_init();
         $thismonth = "/".date("Y")."/".date("m");
@@ -227,7 +235,7 @@ else {$live="error";}
 
 //sql it
      $timenow = date('Y-m-d H:i:s');
-     $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6', monthsmonitored='$months', uptimelast7='$uptime', status='$live', dateLaststats='$pingdomdate', dateUpdated='$timenow', responsetimelast7='$responsetime', score='$score', adminrating='$adminrating', country='$ipdata', whois='$whois', userrating='$userrating' WHERE domain='$domain'";
+     $sql = "UPDATE pods SET Hgitdate='$gitdate', Hencoding='$encoding', secure='$secure', hidden='$hidden', Hruntime='$runtime', Hgitref='$gitrev', ip='$ipnum', ipv6='$ipv6', monthsmonitored='$months', uptimelast7='$uptime', status='$live', dateLaststats='$pingdomdate', dateUpdated='$timenow', responsetimelast7='$responsetime', score='$score', adminrating='$adminrating', country='$country', city='$city', state='$state', lat='$lat', long='$long', postalcode='$postalcode', connection='$connection', whois='$whois', userrating='$userrating' WHERE domain='$domain'";
      $result = pg_query($dbh, $sql);
      if (!$result) {
          die("Error in SQL query: " . pg_last_error());
