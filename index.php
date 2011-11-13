@@ -17,7 +17,7 @@
 <?php include("vendor/Mobile_Detect.php");$detect = new Mobile_Detect();if ($detect->isMobile()) {echo '<link rel="stylesheet" href="http://c807316.r16.cf2.rackcdn.com/mobile.css" /><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">';} ?>
 <script type="text/javascript">
 function map() {
-        $('#map').empty();
+        $('#map').empty().show();
         $('#results').hide();
         $('#add').hide();
         var map = new OpenLayers.Map('map');
@@ -108,7 +108,7 @@ s1.parentNode.insertBefore(s, s1);
       <a href="https://market.android.com/details?id=appinventor.ai_david_morley.DiasporaPoduptime"><img src="http://c807316.r16.cf2.rackcdn.com/android-dude128.png"></a>
     </div>
     <div class="content">
-    <div id="map" style="width:80%;height:500px;position:absolute"></div>
+    <div id="map" style="width:80%;height:500px;position:absolute;display:none"></div>
       <div id="results">
         <?php include("show.php"); ?>
       </div>
