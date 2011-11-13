@@ -14,6 +14,14 @@ if (!$_POST['domain']){
   echo "no pod domain given";
  die;
 }
+if (!$_POST['pingdomurl']){
+  echo "no pingdom url for your stats";
+ die;
+}
+if (substr_count($_POST['pingdomurl'], '/') != 4){
+  echo "pingdom url bad, needs to look like http://stats.pingdom.com/xxxxxxxxxxx/xxxxxx";
+ die;
+}
 
  $dbh = pg_connect("dbname=$pgdb user=$pguser password=$pgpass");
      if (!$dbh) {
