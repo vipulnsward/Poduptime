@@ -17,6 +17,7 @@ od last updated from the main Diaspora code.">?</a></th>
 </thead>
 <tbody>
 <?php
+$tt=0;
  include('db/config.php');
  $dbh = pg_connect("dbname=$pgdb user=$pguser password=$pgpass");
  if (!$dbh) {
@@ -31,8 +32,11 @@ od last updated from the main Diaspora code.">?</a></th>
  if (!$result) {
      die("Error in SQL query: " . pg_last_error());
  }   
+ $numrows = pg_num_rows($result);
  while ($row = pg_fetch_array($result)) {
+$tt=$tt+1;
 if ($row["secure"] == "true") {$method = "https://";$class="green";$tip="This pod uses SSL encryption for traffic.";} else {$method = "http://";$class="red";$tip="This pod does not offer SSL";} 
+//if ($tt == "3") {echo "<tr rowspan=9><td></td></tr>";}
      echo "<tr><td><div title='$tip' class='tipsy'><a class='$class' target='new' href='". $method . $row["domain"] ."'>" . $method . $row["domain"] . "</a></div></td>";
      echo "<td>" . $row["status"] . "</td>";
      echo "<td><div class='tipsy' title='Git Revision ".$row["hgitref"]."'><div id='".$row["hgitdate"]."' class='utc-timestamp'>" . strtotime($row["hgitdate"]) . "</div></div></td>";
@@ -54,6 +58,7 @@ echo "✪";
      echo "<td>" . $row["responsetimelast7"] . "</td>";
      echo "<td>" . $row["ipv6"] . "</td>\n";
      echo "<td class='tipsy' title='".$row["whois"]." '>" . $row["country"] . "</td></tr>\n";
+
  }
  pg_free_result($result);       
  pg_close($dbh);

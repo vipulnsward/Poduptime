@@ -16,17 +16,6 @@
 
 <?php include("vendor/Mobile_Detect.php");$detect = new Mobile_Detect();if ($detect->isMobile()) {echo '<link rel="stylesheet" href="http://c807316.r16.cf2.rackcdn.com/mobile.css" /><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">';} ?>
 <script type="text/javascript">
-function map() {
-        $('#map').empty().show();
-        $('#results').hide();
-        $('#add').hide();
-        var map = new OpenLayers.Map('map');
-        map.addLayer(new OpenLayers.Layer.OSM());
-        map.addControl(new OpenLayers.Control.LayerSwitcher());
-        var layer = new OpenLayers.Layer.GeoRSS("Diaspora Pods", "/api.php?key=4r45tg&format=georss");
-        map.addLayer(layer);
-        map.zoomTo(2);
-}
 (function() {
 var s = document.createElement('SCRIPT'), s1 = document.getElementsByTagName('SCRIPT')[0];
 s.type = 'text/javascript';
@@ -38,63 +27,40 @@ s1.parentNode.insertBefore(s, s1);
 <body>
   <header>
     <div class="page-header">
-      <h1 id="title">
-      DIASPORA* POD UPTIME
-      </h1>
-    <div class="row" id="buttonsy" style="display:none;">
-<div class="span32">
-    <div class="span2">
-    <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://podupti.me"></a>
-    </div>
-    <div class="span2">
-          <img src="http://iliketoast.net/img/diasporaWebBadge80x15_3.png" border="0" onClick="dshare();">
-      <script type="text/javascript">
-      function dshare() {
-         var url = window.location.href;
-         var title = document.title;
-         window.open('http://iliketoast.net/dshare.html?url='+encodeURIComponent(url)+'&title='+encodeURIComponent(title),'dshare','location=no,links=no,scrollbars=no,toolbar=no,width=620,height=400');
-         return false;
-      }
-      </script>
-    </div>
-    <div class="span2">
-    <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://podupti.me" data-text="Pod Uptime - Find a Diaspora Pod!" data-count="horizontal">Tweet</a
-><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
-    </div>
-    <div class="span3">
-    <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fpodupti.me&amp;layout=button_count&amp;show_faces=false&amp;width=150&amp;action=recommend&amp;font
-&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:130px; height:21px;" allowTransparency="true"></iframe>
-    </div>
-    <div class="span2">
-    <a class="DiggThisButton DiggCompact"></a>
-    </div>
-    <div class="span2">
-<img src="http://www.delicious.com/static/img/delicious.small.gif" height="10" width="10" alt="Delicious" />
-        <a href="http://www.delicious.com/save" onclick="window.open('http://www.delicious.com/save?v=5&noui&jump=close&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title), 'delicious','toolbar=no,width=550,height=550'); return false;">Delicious</a>
-    </div>
-    <div class="span2">
-     <g:plusone></g:plusone>
-      <script type="text/javascript">
-        (function() {
-          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-          po.src = 'https://apis.google.com/js/plusone.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-        })();
-      </script>
-    </div>
-<div class="span2">
-<script src="http://www.stumbleupon.com/hostedbadge.php?s=1"></script>
- </div>
-<div class="span4" style="font-size:9px">
-
+      <div class="row">
+        <div class="span6">
+          <h2 id="title">
+          DIASPORA* POD UPTIME
+          </h2>
+        </div>
+      <div class="span3" style="margin-top:8px;">
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_preferred_1"></a>
+<a class="addthis_button_preferred_2"></a>
+<a class="addthis_button_preferred_3"></a>
+<a class="addthis_button_preferred_4"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
 </div>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=davidmmorley"></script>
+<!-- AddThis Button END -->
+      </div>
+      <div class="span4" style="margin-top:8px;">
+      <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://podupti.me"></a>
+      </div>
+      <div class="span2" style="margin-top:8px;">
+<a onClick="map();">Show Map View</a>
+      </div>
+      <div class="span2" style="margin-top:8px;">
+<a onClick="nomap();">Show Table View</a>
+      </div>
+    </div>
+  </div>
 </div>
-    </div>
-    </div>
   </header>
   <div class="container-fluid">
     <div class="sidebar"> 
-      <a onClick="map();">Show Map View</a><br><br>
       <div class="adsense"><script type="text/javascript">
       <!-- 
       google_ad_client = "ca-pub-3662181805557062"; 
