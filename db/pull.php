@@ -20,7 +20,7 @@
  for ($i = 0; $i < $numrows; $i++) {
      $domain =  $row[$i]['domain'];
      $score = $row[$i]['score'];
-
+#echo $score;
 //get ratings
  $userrate=0;$adminrate=0;$userratingavg="";$adminratingavg="";
  $sqlforr = "SELECT * FROM rating_comments WHERE domain = '$domain'";
@@ -36,30 +36,30 @@
      $adminratingavg[] = $myrow['rating'];$adminrate++;
    } 
  }
-echo array_sum($userratingavg);
-echo "divided by";
-echo $userrate;
+#echo array_sum($userratingavg);
+#echo "divided by";
+#echo $userrate;
 
 $userrating = round(array_sum($userratingavg) / $userrate,2);
 $adminrating = round(array_sum($adminratingavg) / $adminrate,2);
-echo $domain."\n";
-echo $userrating."\n";
-echo $adminrating."\n";
+#echo $domain."\n";
+#echo $userrating."\n";
+#echo $adminrating."\n";
 
 if (!$userrating) {$userrating=0;}
 if ($userrating > 10) {$userrating=10;}
 if (!$adminrating) {$adminrating=0;}
 if ($adminrating > 10) {$adminrating=10;}
      pg_free_result($ratings);
-echo $userrating."\n";
-echo $adminrating."\n";
+#echo $userrating."\n";
+#echo $adminrating."\n";
 $userrate=0;$adminrate=0;
 unset($userratingavg);
 unset($adminratingavg);
      //curl the header of pod with and without https
 
         $chss = curl_init();
-        curl_setopt($chss, CURLOPT_URL, "https://".$domain); 
+        curl_setopt($chss, CURLOPT_URL, "https://".$domain."/users/sign_in"); 
         curl_setopt($chss, CURLOPT_POST, 1);
         curl_setopt($chss, CURLOPT_HEADER, 1);
         curl_setopt($chss, CURLOPT_CONNECTTIMEOUT, 5);
@@ -69,7 +69,7 @@ unset($adminratingavg);
         curl_close($chss);
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "http://".$domain);
+        curl_setopt($ch, CURLOPT_URL, "http://".$domain."/users/sign_in");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_HEADER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
@@ -241,7 +241,7 @@ else {$live="error";}
          die("Error in SQL query: " . pg_last_error());
      }
     
-     echo "1";
+     echo $score;
 
 
 //end foreach
