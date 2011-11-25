@@ -147,7 +147,8 @@ $ipv6="yes";
 }
 //curl ip
         $hostip = curl_init();
-        curl_setopt($hostip, CURLOPT_URL, "http://api.infochimps.com/web/analytics/ip_mapping/digital_element/geo?apikey=".$chimpkey."&ip=".$ipnum);
+        #curl_setopt($hostip, CURLOPT_URL, "http://freegeoip.net/json/".$ipnum);
+        curl_setopt($hostip, CURLOPT_URL, "http://api.ip2locationapi.com/v2/?user=".$geouser."&format=json&key=".$geokey."&ip=".$ipnum);
         curl_setopt($hostip, CURLOPT_POST, 0);
         curl_setopt($hostip, CURLOPT_HEADER, 0);
         curl_setopt($hostip, CURLOPT_RETURNTRANSFER, 1);
@@ -159,17 +160,17 @@ $ipv6="yes";
         curl_close($hostip);
         $obj = json_decode($ipraw);
 
-$ipdata = "Country: ".$obj->{'country'}."\n";
+$ipdata = "Country: ".$obj->{'countryName'}."\n";
 
-$whois = "Country: ".$obj->{'country'}." City: ".$obj->{'city'}."\n Postal Code:".$obj->{'postal_code'}." Lat:".$obj->{'latitude'}." Long:".$obj->{'longitude'}." Connection:".$obj->{'conn_speed'};
+$whois = "Country: ".$obj->{'countryName'}." Region: ".$obj->{'regionName'}." City: ".$obj->{'cityName'}."\n Postal Code:".$obj->{'zipcode'}." Lat:".$obj->{'cityLattitude'}." Long:".$obj->{'cityLongitude'};
 
-$country=$obj->{'country'};
-$city=$obj->{'city'};
-$state=$obj->{'region'};
-$postalcode=$obj->{'postal_code'};
-$lat=$obj->{'latitude'};
-$long=$obj->{'longitude'};
-$connection=$obj->{'conn_speed'};
+$country=$obj->{'countryName'};
+$city=$obj->{'cityName'};
+$state=$obj->{'regionName'};
+//$postalcode=$obj->{'zipcode'};
+$lat=$obj->{'cityLattitude'};
+$long=$obj->{'cityLongitude'};
+$connection="";
 
 //curl the pingdom page 
         $ping = curl_init();

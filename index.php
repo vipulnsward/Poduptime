@@ -98,7 +98,7 @@ s1.parentNode.insertBefore(s, s1);
         </form>
         <br>Is your pod missing? If the server can not get a diaspora session its on the hidden list <a href="http://podupti.me/?hidden=true">Show</a>. This
 is mostly because of selfsigned or openca certs, if you need a free ssl cert get one from startssl.com.
-        <br>Need help? <a href="http://frodointernet.com/support">Support</a>
+        <br>Need help? <a href="https://diasporg.zendesk.com">Support</a>
         <br>
       </div>
 <script type="text/javascript">

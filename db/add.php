@@ -44,7 +44,7 @@ echo "pingdom report already exists";die;
      //curl the header of pod with and without https
 
         $chss = curl_init();
-        curl_setopt($chss, CURLOPT_URL, "https://".$_POST['domain']);
+        curl_setopt($chss, CURLOPT_URL, "https://".$_POST['domain']."/users/sign_in");
         curl_setopt($chss, CURLOPT_POST, 1);
         curl_setopt($chss, CURLOPT_HEADER, 1);
         curl_setopt($chss, CURLOPT_CONNECTTIMEOUT, 5);
@@ -54,7 +54,7 @@ echo "pingdom report already exists";die;
         curl_close($chss);
 
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "http://".$_POST['domain']);
+        curl_setopt($ch, CURLOPT_URL, "http://".$_POST['domain']."/users/sign_in");
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_HEADER, 1);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
@@ -88,7 +88,7 @@ if ($valid=="1") {
      $headers = "From: ".$_POST["email"]."\r\nReply-To: ".$_POST["email"]."\r\n";
      @mail( $to, $subject, $message, $headers );    
 
-     echo "Data successfully inserted! Your pod will be reviewed and live on the list soon!";
+     echo "Data successfully inserted! Your pod will be reviewed and live on the list soon! You will get a support ticket, no need to do anything if your pod is listed in the next few hours.";
     
      pg_free_result($result);
     
